@@ -41,6 +41,7 @@ function renderEntry(entry) {
     <p>${entry.reason}</p>
     <button class="delete-btn" onclick="deleteEntry(${entry.id})">Delete</button>
   `;
+  logList.prepend(div);
 }
 
 function saveToLocal(entry) {
