@@ -26,19 +26,22 @@
       </select>
       <input type="text" id="title" placeholder="Title (e.g. Inception)">
       <span id="title-error" class="error-text"></span>
-      <input type="text" id="genre" placeholder="Genre (e.g. Sci-Fi)">
-      <textarea id="reason" placeholder="Why do you like it?"></textarea>
       <input type="number" id="rank" placeholder="Rank (1-10)" min="1" max="10">
       <span id="rank-error" class="error-text"></span>
+      <input type="text" id="genre" placeholder="Genre (e.g. Sci-Fi)">
+      <textarea id="reason" placeholder="Why do you like it?"></textarea>
       <button id="add-btn">Add to Log</button> <!-- the add button to add entried to the container -->
     </section>
 
     <hr>
 
     <section id="log-list" class="log-list"> <!--second section renders/ show movies added to the list -->
-      <button id="clear-all-btn" class="secondary-btn">Clear All Entries</button> <!-- clears all input -->
     </section>
 
+    <hr>
+
+
+    <button id="clear-all-btn" class="secondary-btn">Clear All Entries</button> <!-- clears all input -->
 
   </div>
   <script src="script.js"></script>
