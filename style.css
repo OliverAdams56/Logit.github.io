@@ -126,15 +126,15 @@ select:focus {
 .error-text {
   color: #ff5252;
   font-size: 0.8rem;
-  margin-top: 5px;   /* Small space between input and error */
-  display: none;     /* Hidden by default */
+  margin-top: 5px; /* Small space between input and error */
+  display: none; /* Hidden by default */
 }
 
 /* * This is the magic rule:
  * It only applies when the span is NOT empty (i.e., when JS adds an error).
  */
 .error-text:not(:empty) {
-  display: block;    
+  display: block;
   margin-bottom: 10px; /* Push the next item down only when error is visible */
 }
 
