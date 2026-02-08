@@ -18,7 +18,14 @@
     </header>
 
     <section class="form-section"> <!-- All the forms in the container goes here -->
+      <select id="status">
+        <option value="" disabled selected>Watch Status</option>
+        <option value="To Watch">To Watch</option>
+        <option value="Watching">Watching</option>
+        <option value="Completed">Completed</option>
+      </select>
       <input type="text" id="title" placeholder="Title (e.g. Inception)">
+      <input type="text" id="genre" placeholder="Genre (e.g. Sci-Fi)">
       <textarea id="reason" placeholder="Why do you like it?"></textarea>
       <input type="number" id="rank" placeholder="Rank (1-10)" min="1" max="10">
       <button id="add-btn">Add to Log</button> <!-- the add button to add entried to the container -->

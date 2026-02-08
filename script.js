@@ -10,12 +10,13 @@ window.onload = () => {
 // Listen for the Add Button click
 addBtn.addEventListener("click", () => {
   const title = document.getElementById("title").value;
+  const genre = document.getElementById("genre").value;
   const reason = document.getElementById("reason").value;
   const rank = document.getElementById("rank").value;
 
   if (!title || !rank) return alert("Please fill in Title and Rank");
 
-  const entry = { title, reason, rank, id: Date.now() };
+  const entry = { title, genre, reason, rank, id: Date.now() };
 
   saveToLocal(entry);
   renderEntry(entry);
@@ -24,6 +25,7 @@ addBtn.addEventListener("click", () => {
   document.getElementById("title").value = "";
   document.getElementById("reason").value = "";
   document.getElementById("rank").value = "";
+  document.getElementById("genre").value = "";
 });
 
 function renderEntry(entry) {
