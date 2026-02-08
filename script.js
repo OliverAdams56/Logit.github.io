@@ -34,7 +34,7 @@ function renderEntry(entry) {
   div.setAttribute("data-id", entry.id); // Set unique ID for deletion
   div.innerHTML = `
         <span class="rank-badge">Rank: ${entry.rank}</span>
-        <h3>${entry.title}</h3>
+        <h3>${entry.title} <small style="color:gray;">(${entry.genre})</small></h3>
         <p>${entry.reason}</p>
         <button class="delete-btn" onclick="deleteEntry(${entry.id})">Delete</button>
     `;
