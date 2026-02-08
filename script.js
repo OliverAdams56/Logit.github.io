@@ -9,20 +9,52 @@ window.onload = () => {
 
 // Listen for the Add Button click
 addBtn.addEventListener("click", () => {
+  // 1. GET VALUES
   const status = document.getElementById("status").value;
   const title = document.getElementById("title").value;
   const genre = document.getElementById("genre").value;
   const reason = document.getElementById("reason").value;
   const rank = document.getElementById("rank").value;
 
-  if (!title || !rank) return alert("Please fill in Title and Rank");
+  // 2. DEFINE ELEMENTS FOR VALIDATION (Missing in your code!)
+  const titleInput = document.getElementById("title");
+  const titleError = document.getElementById("title-error");
+  const rankInput = document.getElementById("rank");
+  const rankError = document.getElementById("rank-error");
+  const rankValue = parseInt(rank);
 
+  // 3. RESET ERRORS
+  titleInput.classList.remove("input-error");
+  titleError.innerText = "";
+  rankInput.classList.remove("input-error");
+  rankError.innerText = "";
+
+  let hasError = false;
+
+  // 4. VALIDATE RANK
+  if (!rank || rankValue < 1 || rankValue > 10 || isNaN(rankValue)) {
+    rankInput.classList.add("input-error");
+    rankError.innerText = "Rank must be between 1 and 10.";
+    hasError = true;
+  }
+
+  // 5. VALIDATE TITLE
+  if (!title.trim()) {
+    titleInput.classList.add("input-error");
+    titleError.innerText = "Title is required.";
+    hasError = true;
+  }
+
+  // Stop if there are errors
+  if (hasError) return;
+
+  // 6. SAVE & RENDER
   const entry = { status, title, genre, reason, rank, id: Date.now() };
 
   saveToLocal(entry);
   renderEntry(entry);
 
-  // Clear inputs
+  // 7. CLEAR INPUTS
   document.getElementById("status").selectedIndex = 0;
   document.getElementById("title").value = "";
   document.getElementById("genre").value = "";
