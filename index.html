@@ -1,0 +1,98 @@
+<!-- This defines the skeleton of your app. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Allow the page to scale to device -->
+  <title>Log It - Web</title>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+
+<body> <!-- the body around the container -->
+  <div class="container"> <!-- The main container where everything is being housed -->
+    <header>
+      <h1>Log It</h1>
+      <p>Rank your favorite movies and shows</p> <!-- the header for the container -->
+    </header>
+
+    <section class="form-section"> <!-- All the forms in the container goes here -->
+      <input type="text" id="title" placeholder="Title (e.g. Inception)">
+      <textarea id="reason" placeholder="Why do you like it?"></textarea>
+      <input type="number" id="rank" placeholder="Rank (1-10)" min="1" max="10">
+      <button id="add-btn">Add to Log</button> <!-- the add button to add entried to the container -->
+    </section>
+
+    <hr>
+
+    <section id="log-list" class="log-list"> <!--second section renders/ show movies added to the list -->
+      <button id="clear-all-btn" class="secondary-btn">Clear All Entries</button> <!-- clears all input -->
+    </section>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+<!--
+  I. Project Overview
+    * implement a book/movie log
+    * the system manages a list of items and allows users to interact with that list in meaningful ways.
+-->
+
+<!-- 
+  II. Getting Started
+  * 1 all of the requirements can equally apply to a log of movies watched instead.
+  * ● Your written document must include a short section describing:
+    * ○ how you used generative AI in this project
+    * ○ one example where AI output had to be corrected, refined, or adapted.
+-->
+
+<!-- 
+  III. Tasks:
+    * A. Core Tasks ( 6 pts)
+      * 1. Create a website using HTML that remains usable on mobile (no horizontal scrolling, content not cut off). Consider using Bootstrap (use the starter template and include the responsive meta-tag to make your site responsive on mobile devices). (1 pts) Partial credit: works but breaks on mobile or is visually incoherent
+      * 2. Add a list of books and use CSS to format the list so that it is well-designed. Be thoughtful and intentional about your design. (1 pts) Partial credit: list exists but is cluttered, misaligned, or hard to scan
+      * 3. Allow the user to add books to the list. (This will require additional HTML elements as well as JavaScript.) Allow the user to add title and genre. (1 pt) Partial credit: functionality works but interaction is confusing, hidden, or gives no feedback
+      * 4. Allow the user to indicate the reading/watching status (e.g. “to read,” “in the middle of reading,” “completed reading”). Users should be able to change the status of the books/movies. (1 pt) Partial credit: status changes work but are hard to find, ambiguous, or visually unclear
+      * 5. Allow the user to delete books/movies from the list. (1 pt) Partial credit: delete works but placement or behavior is risky or confusing
+      * 6. Add one more data field not yet required. (1 pt) Partial credit: field exists but feels tacked-on or unclear
+
+    * B. Make it Better (2 pts)
+      * 7. Allow users to rate books that they’ve read. (1 pt) Partial credit: rating exists but is unclear or inconsistently displayed
+      * 8. Enable users to search for books by title or author. (1 pt) Partial credit: Search technically works but is poorly labeled, confusing in behavior, or gives unclear feedback.
+
+    * C. Even Better (2 pts)
+      * 9. Add sorting/filtering options (e.g., by title, author, genre, or reading status). (1 pt) Partial credit: Sorting/filtering works but options or current state are unclear or unintuitive.
+      * 10. Give some sort of celebratory recognition when users complete reading a book– visual or sound or both – beyond the simple feedback of the change of status. Again, be thoughtful and deliberate about your design. (1 pt) Partial credit: Feedback exists but is subtle, inconsistent, distracting, or not clearly tied to completion.
+
+    * D. Cherry on Top (2 pts):
+      * 11. Allow users to group books of a sequel together (e.g. all the Harry Potter books) or all the books by the same author, and display the average rating for the group. (1 pt) Partial credit: Grouping or aggregate data exists but grouping logic or meaning is unclear to users.
+      *12. Display book covers using an API such as Google Books or Open Library. (1 pt) Partial credit: External content appears but is inconsistently displayed, mismatched, or breaks layout when data is missing.
+-->
+
+<!-- 
+  IV. Assignment Details:
+    * A. Managing your Code:
+      * 1. You must use GitHub to manage your code repository. Please add me as a collaborator using username dkletenik.
+      * 2. You must host your website using GitHub Pages. (Useful tutorial here.)
+
+    * B. Written Document
+      * Submissions should be accompanied by a written document (as a PDF) that summarizes the design process. (8 pts)
+      * 1. Is your site targeted to a specific group of users? If so, what are the demographics of that group and how do you appeal to this group? What were some design considerations that you took into account when you designed your site? (1 pt)
+      * 2. Refer to Schneiderman’s eight heuristics for interface design. Which did you consider in your site and how? (2 pts)
+      * 3. Choose 2 core interactions (e.g., add item, change status, delete, rate) and answer the following for each (4 pts)
+        * ● What problem does this interaction solve for the user?
+        * ● What alternatives did you consider?
+        * ● How does the interface communicate:
+          * ○ affordances?
+          * ○ feedback?
+          * ○ constraints?
+        * ● What would break or confuse users if this interaction were poorly designed?
+      * 4. Did you use generative AI for this assignment? If not, write no. If yes, write a brief description of how you used generative AI. (1 pt)
+      * Include at least two examples of:
+        * ● something the AI did poorly or incorrectly
+        * ● something you had to revise, adapt, or rethink
+-->
