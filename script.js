@@ -43,6 +43,12 @@ addBtn.addEventListener("click", () => {
 
   if (hasError) return;
 
+  if (status === "Completed") {
+    showToast("🎉 <strong>Awesome!</strong> You finished a movie!");
+  } else {
+    showToast("✅ Entry added successfully.");
+  }
+
   const entry = { status, title, genre, reason, rank, id: Date.now() };
 
   saveToLocal(entry);
@@ -57,7 +63,10 @@ addBtn.addEventListener("click", () => {
 
 function renderEntry(entry) {
   const div = document.createElement("div");
-  div.className = "log-item";
+
+  const isCompleted = entry.status === "Completed";
+  div.className = `log-item ${isCompleted ? 'celebrate' : ''}`;
+
   div.setAttribute("data-id", entry.id);
   div.innerHTML = `
     <span class="rank-badge">Rank: ${entry.rank}</span>
@@ -102,55 +111,65 @@ const searchBar = document.getElementById('search-bar');
 const noResultsMsg = document.getElementById('no-results');
 
 searchBar.addEventListener('keyup', (e) => {
-    const term = e.target.value.toLowerCase();
-    const items = document.querySelectorAll('.log-item');
-    let hasVisibleItems = false;
+  const term = e.target.value.toLowerCase();
+  const items = document.querySelectorAll('.log-item');
+  let hasVisibleItems = false;
 
-    items.forEach((item) => {
-        const title = item.querySelector('h3').innerText.toLowerCase();
-        
-        if (title.includes(term)) {
-            item.style.display = 'block';
-            hasVisibleItems = true;
-        } else {
-            item.style.display = 'none';
-        }
-    });
+  items.forEach((item) => {
+    const title = item.querySelector('h3').innerText.toLowerCase();
 
-    if (hasVisibleItems) {
-        noResultsMsg.style.display = 'none';
+    if (title.includes(term)) {
+      item.style.display = 'block';
+      hasVisibleItems = true;
     } else {
-        noResultsMsg.style.display = 'block';
+      item.style.display = 'none';
     }
+  });
+
+  if (hasVisibleItems) {
+    noResultsMsg.style.display = 'none';
+  } else {
+    noResultsMsg.style.display = 'block';
+  }
 });
 
 const sortOptions = document.getElementById('sort-options');
 
 sortOptions.addEventListener('change', () => {
-    const criteria = sortOptions.value;
-    let entries = JSON.parse(localStorage.getItem('myLogs')) || [];
+  const criteria = sortOptions.value;
+  let entries = JSON.parse(localStorage.getItem('myLogs')) || [];
 
-    // Sort Logic
-    // Note: Since renderEntry uses 'prepend' (adds to top), 
-    // we sort in the OPPOSITE order of how we want it to look.
-    
-    if (criteria === 'rank-high') {
+  if (criteria === 'rank-high') {
         // Want 10 at top? Sort 1 -> 10
-        entries.sort((a, b) => parseInt(a.rank) - parseInt(b.rank));
-    } else if (criteria === 'rank-low') {
+    entries.sort((a, b) => parseInt(a.rank) - parseInt(b.rank));
+  } else if (criteria === 'rank-low') {
         // Want 1 at top? Sort 10 -> 1
-        entries.sort((a, b) => parseInt(b.rank) - parseInt(a.rank));
-    } else if (criteria === 'title-az') {
+    entries.sort((a, b) => parseInt(b.rank) - parseInt(a.rank));
+  } else if (criteria === 'title-az') {
         // Want A at top? Sort Z -> A
-        entries.sort((a, b) => b.title.localeCompare(a.title));
-    } else {
+    entries.sort((a, b) => b.title.localeCompare(a.title));
+  } else {
         // Newest (Default): Want New at top? Sort Old -> New
-        entries.sort((a, b) => a.id - b.id);
-    }
+    entries.sort((a, b) => a.id - b.id);
+  }
 
     // Clear current list
-    logList.innerHTML = '';
+  logList.innerHTML = '';
 
     // Re-render all items
-    entries.forEach(entry => renderEntry(entry));
+  entries.forEach(entry => renderEntry(entry));
 });
+
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerHTML = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}

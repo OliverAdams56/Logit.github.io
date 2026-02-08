@@ -170,7 +170,47 @@ select:focus {
 
   #search-bar, 
   #sort-options {
-    width: 100%; /* Make them full width */
-    flex: none;  /* Disable the flex sizing */
+    width: 100%;
+    flex: none;
   }
 }
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #323232;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+@keyframes pop-success {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+  50% { transform: scale(1.02); box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+.celebrate {
+  animation: pop-success 0.8s ease-out;
+  border-left: 5px solid #4CAF50 !important; /* Change border to Green */
+}
+
+
+
+
+
+
