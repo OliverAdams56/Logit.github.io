@@ -23,11 +23,11 @@ addBtn.addEventListener("click", () => {
   renderEntry(entry);
 
   // Clear inputs
+  document.getElementById("status").selectedIndex = 0;
   document.getElementById("title").value = "";
+  document.getElementById("genre").value = "";
   document.getElementById("reason").value = "";
   document.getElementById("rank").value = "";
-  document.getElementById("genre").value = "";
-  document.getElementById("status").selectedIndex = 0;
 });
 
 function renderEntry(entry) {
