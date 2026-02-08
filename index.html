@@ -1,5 +1,3 @@
-<!-- This defines the skeleton of your app. -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,38 +8,54 @@
   <link rel="stylesheet" href="style.css"> 
 </head>
 
-<body> <!-- the body around the container -->
-  <div class="container"> <!-- The main container where everything is being housed -->
+<body>
+  <div class="container">
+
     <header>
       <h1>Log It</h1>
-      <p>Rank your favorite movies</p> <!-- the header for the container -->
+      <p>Rank your favorite movies</p>
     </header>
 
-    <section class="form-section"> <!-- All the forms in the container goes here -->
+    <section class="form-section">
+
       <select id="status">
         <option value="" disabled selected>Watch Status</option>
         <option value="To Watch">To Watch</option>
         <option value="Watching">Watching</option>
         <option value="Completed">Completed</option>
       </select>
+
       <input type="text" id="title" placeholder="Title (e.g. Inception)">
       <span id="title-error" class="error-text"></span>
       <input type="number" id="rank" placeholder="Rank (1-10)" min="1" max="10">
       <span id="rank-error" class="error-text"></span>
       <input type="text" id="genre" placeholder="Genre (e.g. Sci-Fi)">
       <textarea id="reason" placeholder="Why do you like it?"></textarea>
-      <button id="add-btn">Add to Log</button> <!-- the add button to add entried to the container -->
+      <button id="add-btn">Add to Log</button>
+
     </section>
 
     <hr>
 
-    <section id="log-list" class="log-list"> <!--second section renders/ show movies added to the list -->
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="🔍 Search logs by title...">
+
+      <select id="sort-options">
+        <option value="newest">Sort by: Newest</option>
+        <option value="rank-high">Rank: High to Low</option>
+        <option value="rank-low">Rank: Low to High</option>
+        <option value="title-az">Title: A-Z</option>
+      </select>
+
+    </div>
+
+    <section id="log-list" class="log-list">
     </section>
 
+    <p id="no-results" style="display:none; text-align:center; color:gray;">No logs found matching that title.</p>
     <hr>
 
-
-    <button id="clear-all-btn" class="secondary-btn">Clear All Entries</button> <!-- clears all input -->
+    <button id="clear-all-btn" class="secondary-btn">Clear All Entries</button>
 
   </div>
   <script src="script.js"></script>
@@ -68,7 +82,6 @@
     * A. Core Tasks ( 6 pts)
       * 1. Create a website using HTML that remains usable on mobile (no horizontal scrolling, content not cut off). Consider using Bootstrap (use the starter template and include the responsive meta-tag to make your site responsive on mobile devices). (1 pts) Partial credit: works but breaks on mobile or is visually incoherent
       * 2. Add a list of books and use CSS to format the list so that it is well-designed. Be thoughtful and intentional about your design. (1 pts) Partial credit: list exists but is cluttered, misaligned, or hard to scan
-
       * 3. Allow the user to add books to the list. (This will require additional HTML elements as well as JavaScript.) Allow the user to add title and genre. (1 pt) Partial credit: functionality works but interaction is confusing, hidden, or gives no feedback
       * 4. Allow the user to indicate the reading/watching status (e.g. “to read,” “in the middle of reading,” “completed reading”). Users should be able to change the status of the books/movies. (1 pt) Partial credit: status changes work but are hard to find, ambiguous, or visually unclear
       * 5. Allow the user to delete books/movies from the list. (1 pt) Partial credit: delete works but placement or behavior is risky or confusing

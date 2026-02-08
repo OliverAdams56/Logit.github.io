@@ -1,29 +1,27 @@
 const logList = document.getElementById("log-list");
 const addBtn = document.getElementById("add-btn");
 
-// Load entries when page opens
+
 window.onload = () => {
   const saved = JSON.parse(localStorage.getItem("myLogs")) || [];
   saved.forEach((entry) => renderEntry(entry));
 };
 
-// Listen for the Add Button click
+
 addBtn.addEventListener("click", () => {
-  // 1. GET VALUES
+
   const status = document.getElementById("status").value;
   const title = document.getElementById("title").value;
   const genre = document.getElementById("genre").value;
   const reason = document.getElementById("reason").value;
   const rank = document.getElementById("rank").value;
 
-  // 2. DEFINE ELEMENTS FOR VALIDATION (Missing in your code!)
   const titleInput = document.getElementById("title");
   const titleError = document.getElementById("title-error");
   const rankInput = document.getElementById("rank");
   const rankError = document.getElementById("rank-error");
   const rankValue = parseInt(rank);
 
-  // 3. RESET ERRORS
   titleInput.classList.remove("input-error");
   titleError.innerText = "";
   rankInput.classList.remove("input-error");
@@ -31,30 +29,25 @@ addBtn.addEventListener("click", () => {
 
   let hasError = false;
 
-  // 4. VALIDATE RANK
   if (!rank || rankValue < 1 || rankValue > 10 || isNaN(rankValue)) {
     rankInput.classList.add("input-error");
     rankError.innerText = "Rank must be between 1 and 10.";
     hasError = true;
   }
 
-  // 5. VALIDATE TITLE
   if (!title.trim()) {
     titleInput.classList.add("input-error");
     titleError.innerText = "Title is required.";
     hasError = true;
   }
 
-  // Stop if there are errors
   if (hasError) return;
 
-  // 6. SAVE & RENDER
   const entry = { status, title, genre, reason, rank, id: Date.now() };
 
   saveToLocal(entry);
   renderEntry(entry);
 
-  // 7. CLEAR INPUTS
   document.getElementById("status").selectedIndex = 0;
   document.getElementById("title").value = "";
   document.getElementById("genre").value = "";
@@ -65,7 +58,7 @@ addBtn.addEventListener("click", () => {
 function renderEntry(entry) {
   const div = document.createElement("div");
   div.className = "log-item";
-  div.setAttribute("data-id", entry.id); // Set unique ID for deletion
+  div.setAttribute("data-id", entry.id);
   div.innerHTML = `
     <span class="rank-badge">Rank: ${entry.rank}</span>
     <h3>${entry.title} <small style="color:gray;">(${entry.genre})</small></h3>
@@ -103,4 +96,61 @@ clearBtn.addEventListener("click", () => {
     // 2. Clear the screen
     logList.innerHTML = "";
   }
+});
+
+const searchBar = document.getElementById('search-bar');
+const noResultsMsg = document.getElementById('no-results');
+
+searchBar.addEventListener('keyup', (e) => {
+    const term = e.target.value.toLowerCase();
+    const items = document.querySelectorAll('.log-item');
+    let hasVisibleItems = false;
+
+    items.forEach((item) => {
+        const title = item.querySelector('h3').innerText.toLowerCase();
+        
+        if (title.includes(term)) {
+            item.style.display = 'block';
+            hasVisibleItems = true;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    if (hasVisibleItems) {
+        noResultsMsg.style.display = 'none';
+    } else {
+        noResultsMsg.style.display = 'block';
+    }
+});
+
+const sortOptions = document.getElementById('sort-options');
+
+sortOptions.addEventListener('change', () => {
+    const criteria = sortOptions.value;
+    let entries = JSON.parse(localStorage.getItem('myLogs')) || [];
+
+    // Sort Logic
+    // Note: Since renderEntry uses 'prepend' (adds to top), 
+    // we sort in the OPPOSITE order of how we want it to look.
+    
+    if (criteria === 'rank-high') {
+        // Want 10 at top? Sort 1 -> 10
+        entries.sort((a, b) => parseInt(a.rank) - parseInt(b.rank));
+    } else if (criteria === 'rank-low') {
+        // Want 1 at top? Sort 10 -> 1
+        entries.sort((a, b) => parseInt(b.rank) - parseInt(a.rank));
+    } else if (criteria === 'title-az') {
+        // Want A at top? Sort Z -> A
+        entries.sort((a, b) => b.title.localeCompare(a.title));
+    } else {
+        // Newest (Default): Want New at top? Sort Old -> New
+        entries.sort((a, b) => a.id - b.id);
+    }
+
+    // Clear current list
+    logList.innerHTML = '';
+
+    // Re-render all items
+    entries.forEach(entry => renderEntry(entry));
 });
