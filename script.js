@@ -9,6 +9,7 @@ window.onload = () => {
 
 // Listen for the Add Button click
 addBtn.addEventListener("click", () => {
+  const status = document.getElementById("status").value;
   const title = document.getElementById("title").value;
   const genre = document.getElementById("genre").value;
   const reason = document.getElementById("reason").value;
@@ -16,7 +17,7 @@ addBtn.addEventListener("click", () => {
 
   if (!title || !rank) return alert("Please fill in Title and Rank");
 
-  const entry = { title, genre, reason, rank, id: Date.now() };
+  const entry = { status, title, genre, reason, rank, id: Date.now() };
 
   saveToLocal(entry);
   renderEntry(entry);
@@ -26,6 +27,7 @@ addBtn.addEventListener("click", () => {
   document.getElementById("reason").value = "";
   document.getElementById("rank").value = "";
   document.getElementById("genre").value = "";
+  document.getElementById("status").selectedIndex = 0;
 });
 
 function renderEntry(entry) {
@@ -33,12 +35,12 @@ function renderEntry(entry) {
   div.className = "log-item";
   div.setAttribute("data-id", entry.id); // Set unique ID for deletion
   div.innerHTML = `
-        <span class="rank-badge">Rank: ${entry.rank}</span>
-        <h3>${entry.title} <small style="color:gray;">(${entry.genre})</small></h3>
-        <p>${entry.reason}</p>
-        <button class="delete-btn" onclick="deleteEntry(${entry.id})">Delete</button>
-    `;
-  logList.prepend(div);
+    <span class="rank-badge">Rank: ${entry.rank}</span>
+    <h3>${entry.title} <small style="color:gray;">(${entry.genre})</small></h3>
+    <p><strong>Status:</strong> ${entry.status || 'Not Set'}</p>
+    <p>${entry.reason}</p>
+    <button class="delete-btn" onclick="deleteEntry(${entry.id})">Delete</button>
+  `;
 }
 
 function saveToLocal(entry) {
