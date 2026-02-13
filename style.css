@@ -16,8 +16,18 @@ body {
 }
 
 header h1 {
-  color: #6200ee;
-  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #6200ee, #ff007a, #03dac6);
+  
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 0.1rem;
+  letter-spacing: -1.5px;
+  
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .form-section {
@@ -25,6 +35,17 @@ header h1 {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+button#add-btn {
+  background: linear-gradient(90deg, #6200ee, #9c27b0);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button#add-btn:hover {
+  background: linear-gradient(90deg, #3700b3, #7b1fa2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(98, 0, 238, 0.4);
 }
 
 input,
@@ -164,7 +185,7 @@ select:focus {
 
 @media (max-width: 600px) {
   .search-container {
-    flex-direction: column; /* Stack them vertically */
+    flex-direction: column;
     gap: 10px;
   }
 
@@ -206,7 +227,7 @@ select:focus {
 
 .celebrate {
   animation: pop-success 0.8s ease-out;
-  border-left: 5px solid #4CAF50 !important; /* Change border to Green */
+  border-left: 5px solid #4CAF50 !important;
 }
 
 
