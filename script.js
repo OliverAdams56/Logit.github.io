@@ -4,6 +4,9 @@ const addBtn = document.getElementById("add-btn");
 const searchBar = document.getElementById('search-bar');
 const noResultsMsg = document.getElementById('no-results');
 const sortOptions = document.getElementById('sort-options');
+const helpBtn = document.getElementById("help-btn");
+const helpModal = document.getElementById("help-modal");
+const closeModal = document.querySelector(".close-modal");
 
 // When the page finishes loading, retrieve and show saved logs
 window.onload = () => {
