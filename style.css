@@ -241,6 +241,18 @@ select:focus {
   border-left: 5px solid #4CAF50 !important;
 }
 
+.header-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.header-sub p {
+  margin: 0;
+}
+
 #help-btn {
   background: none;
   color: #6200ee;
@@ -256,8 +268,6 @@ select:focus {
   justify-content: center;
   transition: all 0.2s ease;
 }
-
-
 
 #help-btn:hover {
   background-color: #6200ee;
