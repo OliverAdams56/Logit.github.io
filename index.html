@@ -14,56 +14,71 @@
     <header>
       <h1>Log It</h1>
       <p>Rank your favorite movies</p>
+      <button id="help-btn">?</button>
     </header>
 
 <!-- Everything here is to do with the actual form -->
-    <section class="form-section">
-      <input type="text" id="title" placeholder="Title (e.g. Inception)">
-      <span id="title-error" class="error-text"></span>
+<section class="form-section">
+  <input type="text" id="title" placeholder="Title (e.g. Inception)">
+  <span id="title-error" class="error-text"></span>
 
-      <input type="number" id="rank" placeholder="Rank (1-10)" min="1" max="10">
-      <span id="rank-error" class="error-text"></span>
+  <input type="number" id="rank" placeholder="Rank (1-10)" min="1" max="10">
+  <span id="rank-error" class="error-text"></span>
 
-      <input type="text" id="genre" placeholder="Genre (e.g. Sci-Fi)">
+  <input type="text" id="genre" placeholder="Genre (e.g. Sci-Fi)">
 
-      <textarea id="reason" placeholder="What did you think of it?"></textarea>
+  <textarea id="reason" placeholder="What did you think of it?"></textarea>
 
-      <select id="status">
-        <option value="" disabled selected>Watch Status</option>
-        <option value="To Watch">To Watch</option>
-        <option value="Watching">Watching</option>
-        <option value="Completed">Completed</option>
-      </select>
+  <select id="status">
+    <option value="" disabled selected>Watch Status</option>
+    <option value="To Watch">To Watch</option>
+    <option value="Watching">Watching</option>
+    <option value="Completed">Completed</option>
+  </select>
 
-      <button id="add-btn">Add to Log</button>
-    </section>
+  <button id="add-btn">Add to Log</button>
+</section>
 <!--  this is where form stuff ends-->
-    <hr>
+<hr>
 
 <!-- everything here has to do with search and sort -->
-    <div class="search-container">
-      <input type="text" id="search-bar" placeholder="🔍 Search logs by title...">
+<div class="search-container">
+  <input type="text" id="search-bar" placeholder="🔍 Search logs by title...">
 
-      <select id="sort-options">
-        <option value="newest">Sort by: Newest</option>
-        <option value="rank-high">Rank: High to Low</option>
-        <option value="rank-low">Rank: Low to High</option>
-        <option value="title-az">Title: A-Z</option>
-      </select>
-    </div>
+  <select id="sort-options">
+    <option value="newest">Sort by: Newest</option>
+    <option value="rank-high">Rank: High to Low</option>
+    <option value="rank-low">Rank: Low to High</option>
+    <option value="title-az">Title: A-Z</option>
+  </select>
+</div>
 <!-- this is where search and sort ends -->
 
 
-    <section id="log-list" class="log-list">
-    </section>
+<section id="log-list" class="log-list">
+</section>
 
-    <p id="no-results" style="display:none; text-align:center; color:gray;">No logs found matching that title.</p>
-    <hr>
+<p id="no-results" style="display:none; text-align:center; color:gray;">No logs found matching that title.</p>
+<hr>
 
-    <button id="clear-all-btn" class="secondary-btn">Clear All Entries</button>
+<button id="clear-all-btn" class="secondary-btn">Clear All Entries</button>
 
+</div>
+
+<div id="help-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>How to Log</h3>
+    <ul class="help-list">
+      <li><strong>Title:</strong> The name of the movie (e.g., Inception).</li>
+      <li><strong>Rank:</strong> Rate it from 1 (Hated it) to 10 (Masterpiece).</li>
+      <li><strong>Genre:</strong> The category (e.g., Horror, Comedy, Sci-Fi).</li>
+      <li><strong>Status:</strong> Are you planning to watch it, currently watching, or finished?</li>
+    </ul>
   </div>
-  <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>

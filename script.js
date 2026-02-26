@@ -173,3 +173,17 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }
+
+helpBtn.onclick = () => {
+  helpModal.style.display = "flex";
+};
+
+closeModal.onclick = () => {
+  helpModal.style.display = "none";
+};
+
+window.onclick = (event) => {
+  if (event.target == helpModal) {
+    helpModal.style.display = "none";
+  }
+};
