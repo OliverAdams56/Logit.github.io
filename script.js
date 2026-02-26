@@ -39,12 +39,11 @@ addBtn.addEventListener("click", () => {
   let hasError = false;
 
   // Check if Rank is between 1 and 10
-  if (!rank || rankValue < 1 || rankValue > 10 || isNaN(rankValue)) {
+  if (rank.trim() !== "" && (rankValue < 1 || rankValue > 10 || isNaN(rankValue))) {
     rankInput.classList.add("input-error");
     rankError.innerText = "Rank must be between 1 and 10.";
     hasError = true;
   }
-
   // Check if Title is provided
   if (!title.trim()) {
     titleInput.classList.add("input-error");
@@ -63,7 +62,7 @@ addBtn.addEventListener("click", () => {
   }
 
   // Create a movie object and save it
-  const entry = { status, title, genre, reason, rank, id: Date.now() };
+  const entry = { status, title, genre, reason, rank: rank || "—", id: Date.now() };
   saveToLocal(entry);
   renderEntry(entry);
 
