@@ -134,15 +134,13 @@ function saveToLocal(entry) {
 
 // Function to handle single entry deletion with a confirmation prompt
 function deleteEntry(id) {
-  if (confirm("Are you sure you want to delete this entry?")) {
-    const itemToRemove = document.querySelector(`[data-id="${id}"]`);
-    if (itemToRemove) itemToRemove.remove();
+  const itemToRemove = document.querySelector(`[data-id="${id}"]`);
+  if (itemToRemove) itemToRemove.remove();
 
-    let logs = JSON.parse(localStorage.getItem("myLogs")) || [];
-    logs = logs.filter((log) => log.id !== id);
-    localStorage.setItem("myLogs", JSON.stringify(logs));
-    showToast("🗑️ Entry removed.");
-  }
+  let logs = JSON.parse(localStorage.getItem("myLogs")) || [];
+  logs = logs.filter((log) => log.id !== id);
+  localStorage.setItem("myLogs", JSON.stringify(logs));
+  showToast("🗑️ Entry removed.");
 }
 
 // Button listener to wipe all data from storage and the UI
