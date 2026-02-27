@@ -10,7 +10,39 @@ const closeModal = document.querySelector(".close-modal");
 
 // When the page finishes loading, retrieve and show saved logs
 window.onload = () => {
-  const saved = JSON.parse(localStorage.getItem("myLogs")) || [];
+  let saved = JSON.parse(localStorage.getItem("myLogs"));
+  
+  if (!saved || saved.length === 0) {
+    const initialLogs = [
+      {
+        id: 1,
+        title: "Inception",
+        rank: "10",
+        genre: "Sci-Fi",
+        reason: "A mind-bending masterpiece with incredible visuals.",
+        status: "Completed"
+      },
+      {
+        id: 2,
+        title: "The Godfather",
+        rank: "9",
+        genre: "Crime",
+        reason: "An absolute classic. The storytelling is unmatched.",
+        status: "Completed"
+      },
+      {
+        id: 3,
+        title: "Interstellar",
+        rank: "—", 
+        genre: "Sci-Fi",
+        reason: "Planning to watch this soon! Heard great things about the soundtrack.",
+        status: "To Watch"
+      }
+    ];
+    localStorage.setItem("myLogs", JSON.stringify(initialLogs));
+    saved = initialLogs;
+  }
+  
   saved.forEach((entry) => renderEntry(entry));
 };
 
@@ -147,11 +179,16 @@ searchBar.addEventListener('keyup', (e) => {
 sortOptions.addEventListener('change', () => {
   const criteria = sortOptions.value;
   let entries = JSON.parse(localStorage.getItem('myLogs')) || [];
+  
+  const getRankValue = (rank) => {
+    const val = parseInt(rank);
+    return isNaN(val) ? 0 : val;
+  };
 
   if (criteria === 'rank-high') {
-    entries.sort((a, b) => parseInt(a.rank) - parseInt(b.rank));
+    entries.sort((a, b) => getRankValue(a.rank) - getRankValue(b.rank));
   } else if (criteria === 'rank-low') {
-    entries.sort((a, b) => parseInt(b.rank) - parseInt(a.rank));
+    entries.sort((a, b) => getRankValue(b.rank) - getRankValue(a.rank));
   } else if (criteria === 'title-az') {
     entries.sort((a, b) => b.title.localeCompare(a.title));
   } else {
